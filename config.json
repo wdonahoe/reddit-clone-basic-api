@@ -1,0 +1,8 @@
+{
+  "secret": "ngEurope rocks!",
+  "port" : 3001,
+  "mongoose" : {
+		"dev" : "mongodb://localhost/reddit-dev",
+		"production" : "mongodb://heroku_app35564244:9652171juB@ds061391.mongolab.com:61391/heroku_app3556424"
+	}
+}
