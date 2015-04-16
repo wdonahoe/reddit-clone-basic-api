@@ -29,6 +29,7 @@ app.use('*', function(req,res){res.send(404).end()});
 
 // connect to the database.
 var connectionUrl = app.get('env') === 'development' ? config.mongoose.dev : config.mongoose.production
+//mongoose.connect(config.mongoose.production);
 mongoose.connect(connectionUrl);
 var db = mongoose.connection;
 
