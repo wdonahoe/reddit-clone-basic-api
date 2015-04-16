@@ -25,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride());
 
 app.use('/api',require('./routes'));
+app.use('*', function(req,res){res.send(404).end()});
 
 // connect to the database.
 var connectionUrl = app.get('env') === 'development' ? config.mongoose.dev : config.mongoose.production
