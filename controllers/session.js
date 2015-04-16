@@ -2,7 +2,7 @@ var User 		     = require('../models/user');
 var jwt  		     = require('jsonwebtoken');
 var config 		   = require('../config');
 var _ 			     = require('underscore');
-var HttpStatus   = require('http-status');
+var HttpStatus   = require('http-status-codes');
 
 function createToken(user) {
   return jwt.sign(_.omit(user, 'password'), config.secret, { expiresInMinutes: 60*5 });
