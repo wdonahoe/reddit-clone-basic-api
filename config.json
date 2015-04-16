@@ -3,6 +3,6 @@
   "port" : 3001,
   "mongoose" : {
 		"dev" : "mongodb://localhost/reddit-dev",
-		"production" : "mongodb://heroku_app35564244:9652171juB@ds061391.mongolab.com:61391/heroku_app3556424"
+		"production" : "mongodb://wdonahoe:9652171juB@proximus.modulusmongo.net:27017/aQumaj9u"
 	}
 }
