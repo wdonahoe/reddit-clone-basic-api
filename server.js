@@ -18,7 +18,7 @@ var app             = express();
 // old version of line
 // app.use(bodyParser.urlencoded());
 // new version of line
-app.use(cors());
+//app.use(cors());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
