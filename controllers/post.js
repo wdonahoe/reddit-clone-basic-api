@@ -91,7 +91,7 @@ exports.getPost = function(req,res){
 			post.comment_bodies = [];
 			async.forEach(post.comments,
 				function(comment_id,done){
-					Comment.findById(comment_id).lean().exec(function(comment,err){
+					Comment.findById(comment_id).lean().exec(function(err,comment){
 						post.comment_bodies.push(comment);
 						done();
 					});
