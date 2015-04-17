@@ -81,13 +81,41 @@ exports.deletePosts = function(req,res){
 }
 
 exports.getPost = function(req,res){
-	Post.findById(req.params.id).lean().exec(function(err,post){
+	async.waterfall([
+		function(callback){
+			Post.findById(req.params.id).lean().exec(function(err,post){
+				callback(err,post);
+			});
+		},
+		function(post,callback){
+			post.comment_bodies = [];
+			async.forEach(post.comments,
+				function(comment_id,done){
+					Comment.findById(comment_id).lean().exec(function(comment,err){
+						post.comment_bodies.push(comment);
+						done();
+					});
+				},
+				function(err){
+					callback(err,post)
+				}
+			);
+		}
+		],
+		function(err,post){
+			if (!err)
+				log.info({message:" Got post " + post.text + "!"});
+			else
+				res.send(err);
+			res.status(HttpStatus.OK).json(post);
+		});
+/*	Post.findById(req.params.id).lean().exec(function(err,post){
 		if (!err)
 			log.info({message:" Got post " + post.text + "!"});
 		else
 			res.send(err);
 		res.status(HttpStatus.OK).json(post);
-	});
+	});*/
 }
 
 exports.patchPost = function(req,res){
